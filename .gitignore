@@ -1,0 +1,10 @@
+# Local source material and originals, not part of the published site
+/Assets/
+
+# Machine-specific preview server config (hardcodes a local path)
+/.claude/
+
+# Design-tool working files
+site/scraps/
+site/uploads/
+site/.thumbnail

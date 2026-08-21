@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #F5F6F8; -webkit-font-smoothing: antialiased; }
+  a { color: #1A5CD8; text-decoration: none; }
+  a:hover { color: #0B0C0E; }
+  input, button, textarea { font: inherit; }
+</style>
+</helmet>
+<div style="font-family: Archivo, Helvetica, sans-serif; color: #0B0C0E; background: #F5F6F8; min-height: 100vh; text-wrap: pretty;">
+
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(246,247,244,.93); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(11,12,14,.12);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 clamp(20px, 3vw, 40px); height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+      <div onClick="{{ goHome }}" style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+        <img src="assets/logo.jpeg" alt="Vax 2040 logo" style="width: 44px; height: 44px; object-fit: cover; display: block;" />
+        <div style="display: flex; flex-direction: column; gap: 1px;">
+          <div style="font-weight: 700; font-size: 16px; letter-spacing: -.2px; line-height: 1;">VAX 2040</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: .1em; color: rgba(11,12,14,.55); line-height: 1;">RESEARCH CENTER</div>
+        </div>
+      </div>
+      <nav style="display: flex; align-items: center; gap: 4px;">
+        <div onClick="{{ goHome }}" style="position: relative; padding: 10px 14px; font-size: 14.5px; font-weight: 500; cursor: pointer; color: #0B0C0E;" style-hover="color: #1A5CD8;">Home
+          <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}"><div style="position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px; background: #1A5CD8;"></div></sc-if>
+        </div>
+        <div onClick="{{ goAbout }}" style="position: relative; padding: 10px 14px; font-size: 14.5px; font-weight: 500; cursor: pointer; color: #0B0C0E;" style-hover="color: #1A5CD8;">About
+          <sc-if value="{{ isAbout }}"><div style="position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px; background: #1A5CD8;"></div></sc-if>
+        </div>
+        <div onClick="{{ goResearch }}" style="position: relative; padding: 10px 14px; font-size: 14.5px; font-weight: 500; cursor: pointer; color: #0B0C0E;" style-hover="color: #1A5CD8;">Research
+          <sc-if value="{{ isResearch }}"><div style="position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px; background: #1A5CD8;"></div></sc-if>
+        </div>
+        <div onClick="{{ goImpact }}" style="position: relative; padding: 10px 14px; font-size: 14.5px; font-weight: 500; cursor: pointer; color: #0B0C0E;" style-hover="color: #1A5CD8;">Impact
+          <sc-if value="{{ isImpact }}"><div style="position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px; background: #1A5CD8;"></div></sc-if>
+        </div>
+        <div onClick="{{ goContact }}" style="margin-left: 12px; padding: 11px 20px; font-size: 14.5px; font-weight: 600; cursor: pointer; background: #1A5CD8; color: #fff;" style-hover="background: #0B0C0E;">Contact</div>
+      </nav>
+    </div>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main data-screen-label="Home">
+    <section style="position: relative; background: #0B0C0E; overflow: hidden;">
+      <img src="assets/hero-fill-finish.jpg" alt="Technicians operating a vaccine fill-finish line in a cleanroom" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,10,12,.95) 0%, rgba(9,10,12,.8) 46%, rgba(9,10,12,.4) 100%);"></div>
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 132px 40px 148px;">
+        <div style="max-width: 820px;">
+          <div style="display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border: 1px solid rgba(255,255,255,.28); margin-bottom: 34px;">
+            <div style="width: 6px; height: 6px; background: #8FB6FF;"></div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.85);">INDEPENDENT DATA-DRIVEN RESEARCH MECHANISM</span>
+          </div>
+          <h1 style="margin: 0 0 28px; font-size: clamp(40px, 6.2vw, 76px); line-height: .99; letter-spacing: -.032em; font-weight: 700; color: #fff;">Pharmaceutical and Vaccine Research Center</h1>
+          <p style="margin: 0 0 40px; max-width: 640px; font-size: 19px; line-height: 1.6; color: rgba(255,255,255,.78);">A philanthropic research and development entity deepening capability in the manufacturing of vaccines and health commodities across Eastern and Central Africa — and beyond, wherever the need is greatest.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <div onClick="{{ goResearch }}" style="padding: 15px 28px; background: #8FB6FF; color: #0A1730; font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: #fff;">Explore our research</div>
+            <div onClick="{{ goAbout }}" style="padding: 15px 28px; border: 1px solid rgba(255,255,255,.35); color: #fff; font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: rgba(255,255,255,.1);">About the Center</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #fff; border-bottom: 1px solid rgba(11,12,14,.12);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 1.15fr) repeat(3, minmax(0, 1fr)); gap: 0;">
+          <div style="padding: 44px 40px 44px 0; border-right: 1px solid rgba(11,12,14,.12);">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 12px;">THE 2040 MANDATE</div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(11,12,14,.7);">The African Union target: <strong style="color: #0B0C0E; font-weight: 600;">60% of vaccines used in Africa manufactured in Africa by 2040.</strong></p>
+          </div>
+          <div style="padding: 44px 32px; border-right: 1px solid rgba(11,12,14,.12);">
+            <div style="font-size: 50px; font-weight: 700; letter-spacing: -2px; line-height: 1; color: #1A5CD8;">99%</div>
+            <div style="margin-top: 10px; font-size: 14px; color: rgba(11,12,14,.65);">of vaccines imported</div>
+          </div>
+          <div style="padding: 44px 32px; border-right: 1px solid rgba(11,12,14,.12);">
+            <div style="font-size: 50px; font-weight: 700; letter-spacing: -2px; line-height: 1; color: #1A5CD8;">70%</div>
+            <div style="margin-top: 10px; font-size: 14px; color: rgba(11,12,14,.65);">of medicines imported</div>
+          </div>
+          <div style="padding: 44px 0 44px 32px;">
+            <div style="font-size: 50px; font-weight: 700; letter-spacing: -2px; line-height: 1; color: #1A5CD8;">60%</div>
+            <div style="margin-top: 10px; font-size: 14px; color: rgba(11,12,14,.65);">AU target by 2040</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #F5F6F8;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 104px 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 56px 64px; align-items: start;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 26px;">WELCOME</div>
+            <div style="position: relative;">
+              <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+              <img src="assets/ceo-moses-bagarirayose.png" alt="Mr Moses Bagarirayose, Founder and CEO of Vax 2040" style="position: relative; width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center 22%; display: block; filter: saturate(.92);" />
+              <div style="position: absolute; left: 0; bottom: 0; right: 0; height: 4px; background: #1A5CD8;"></div>
+            </div>
+            <div style="margin-top: 18px; font-size: 16px; font-weight: 700;">Mr Moses Bagarirayose</div>
+            <div style="margin-top: 3px; font-size: 13.5px; color: rgba(11,12,14,.6);">Founder &amp; Chief Executive Officer</div>
+          </div>
+          <div style="padding-top: 4px;">
+            <h2 style="margin: 0 0 30px; font-size: 42px; line-height: 1.1; letter-spacing: -1.4px; font-weight: 700; max-width: 640px;">A message from our founder</h2>
+            <div style="max-width: 660px; display: flex; flex-direction: column; gap: 20px; font-size: 17.5px; line-height: 1.68; color: rgba(11,12,14,.78);">
+              <p style="margin: 0;">Africa carries a quarter of the world's disease burden and manufactures almost none of the medicine it needs. When supply lines closed during the last pandemic, that arithmetic stopped being a statistic and became a matter of survival.</p>
+              <p style="margin: 0;">Vax 2040 was founded on a simple conviction: sovereignty in health cannot be donated, it has to be built — and it has to be measured. We are not a manufacturer and not a lobby. We are an independent research mechanism that counts what is actually being produced, where capability is thin, and what stands between this continent and the African Union's 2040 target.</p>
+              <p style="margin: 0;">Our work is offered freely to the governments, regulators, manufacturers and journalists who need it. Thank you for taking an interest in it.</p>
+            </div>
+            <sc-if value="{{ showSignature }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top: 34px; padding-top: 26px; border-top: 1px solid rgba(11,12,14,.14); max-width: 660px; display: flex; align-items: baseline; gap: 14px;">
+                <div style="font-size: 24px; font-weight: 600; font-style: italic; letter-spacing: -.5px; color: #1A5CD8;">Moses Bagarirayose</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .1em; color: rgba(11,12,14,.5);">KIGALI, RWANDA</div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #fff; border-top: 1px solid rgba(11,12,14,.12);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 104px 40px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(11,12,14,.14);">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 18px;">AREAS OF RESEARCH</div>
+            <h2 style="margin: 0; font-size: 42px; line-height: 1.1; letter-spacing: -1.4px; font-weight: 700; max-width: 620px;">Four questions we track continuously</h2>
+          </div>
+          <div onClick="{{ goResearch }}" style="flex: none; font-size: 14.5px; font-weight: 600; color: #1A5CD8; cursor: pointer; padding-bottom: 6px;" style-hover="color: #0B0C0E;">All research areas →</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: rgba(11,12,14,.12);">
+          <sc-for list="{{ areas }}" as="area" hint-placeholder-count="4">
+            <div onClick="{{ goResearch }}" style="background: #fff; padding: 34px 28px 32px; cursor: pointer; display: flex; flex-direction: column;" style-hover="background: #F5F6F8;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(11,12,14,.42); margin-bottom: 26px;">{{ area.num }}</div>
+              <h3 style="margin: 0 0 14px; font-size: 20px; line-height: 1.22; letter-spacing: -.5px; font-weight: 600;">{{ area.title }}</h3>
+              <p style="margin: 0 0 24px; font-size: 14.5px; line-height: 1.55; color: rgba(11,12,14,.65); flex: 1;">{{ area.short }}</p>
+              <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; color: #1A5CD8; text-transform: uppercase;">{{ area.tags }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #1A5CD8;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 92px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 56px; align-items: center;">
+        <div>
+          <h2 style="margin: 0 0 18px; font-size: 40px; line-height: 1.12; letter-spacing: -1.3px; font-weight: 700; color: #fff;">Partner with us</h2>
+          <p style="margin: 0; max-width: 560px; font-size: 17.5px; line-height: 1.62; color: rgba(255,255,255,.8);">We work with academic institutions, data analysts and independent philanthropic backers. Join us in tracking Africa's journey toward pharmaceutical sovereignty.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div onClick="{{ goContact }}" style="padding: 16px 26px; background: #fff; color: #0B0C0E; font-weight: 600; font-size: 15px; text-align: center; cursor: pointer;" style-hover="background: #8FB6FF;">Contact the research team</div>
+          <div onClick="{{ goImpact }}" style="padding: 16px 26px; border: 1px solid rgba(255,255,255,.4); color: #fff; font-weight: 600; font-size: 15px; text-align: center; cursor: pointer;" style-hover="background: rgba(255,255,255,.12);">View our impact</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}">
+  <main data-screen-label="About">
+    <section style="position: relative; background: #0B0C0E; overflow: hidden;">
+      <img src="assets/lab-team.jpg" alt="Vax 2040 research scientists working in a laboratory" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(9,10,12,.93) 0%, rgba(9,10,12,.74) 52%, rgba(9,10,12,.4) 100%);"></div>
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 96px 40px 100px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.6); margin-bottom: 22px;">VAX 2040 (VAX PHARMA 2040)</div>
+        <h1 style="margin: 0; font-size: clamp(38px, 5.6vw, 68px); line-height: 1.02; letter-spacing: -.032em; font-weight: 700; color: #fff;">About us</h1>
+      </div>
+    </section>
+
+    <section style="background: #fff; border-bottom: 1px solid rgba(11,12,14,.12);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 56px 64px; align-items: start;">
+        <div style="padding-top: 10px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 26px;">WHO WE ARE</div>
+          <div style="position: relative;">
+            <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+            <img src="assets/who-we-are.jpg" alt="Illustration of partners around a map of Africa holding a Vax 2040 vaccine vial" style="position: relative; width: 100%; display: block; border: 1px solid rgba(11,12,14,.12);" />
+          </div>
+        </div>
+        <div>
+          <h2 style="margin: 0 0 34px; font-size: 34px; line-height: 1.28; letter-spacing: -1px; font-weight: 600; max-width: 800px;">Vax 2040 is a philanthropic research and development entity dedicated to deepening career and capability in the pharmaceutical manufacturing of vaccines and other health commodities.</h2>
+          <div style="max-width: 700px; display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.68; color: rgba(11,12,14,.75);">
+            <p style="margin: 0;">Our geography is the Eastern and Central regions of Africa and beyond — wherever the manufacturing of vaccines and pharmaceuticals expresses a great need.</p>
+            <p style="margin: 0;">We are independent by design. We do not manufacture, sell or procure. Our sole output is evidence: an open, data-driven account of where African pharmaceutical manufacturing actually stands against the African Union's 2040 target, and what has to change for that target to be met.</p>
+            <p style="margin: 0;">That evidence is built for the people who can act on it — health ministries, national regulators, manufacturers, development financiers and the journalists who hold all of them to account.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #F5F6F8; border-bottom: 1px solid rgba(11,12,14,.12);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 56px 64px; align-items: start;">
+          <div style="padding-top: 10px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 26px;">OUR VALUES</div>
+            <div style="position: relative;">
+              <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+              <img src="assets/our-values.jpg" alt="Illustration of interlocking gears representing health, partnership and evidence" style="position: relative; width: 100%; display: block; border: 1px solid rgba(11,12,14,.12);" />
+            </div>
+          </div>
+          <div>
+            <h2 style="margin: 0 0 48px; font-size: 40px; line-height: 1.1; letter-spacing: -1.3px; font-weight: 700;">Guiding principles</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(11,12,14,.14);">
+              <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+                <div style="background: #F5F6F8; padding: 32px 34px 34px;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #1A5CD8; margin-bottom: 18px;">{{ v.num }}</div>
+                  <h3 style="margin: 0 0 10px; font-size: 22px; line-height: 1.2; letter-spacing: -.6px; font-weight: 600;">{{ v.title }}</h3>
+                  <p style="margin: 0; font-size: 14.5px; line-height: 1.55; color: rgba(11,12,14,.65);">{{ v.body }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #fff;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 56px 64px; align-items: start;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; padding-top: 10px;">LEADERSHIP</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
+            <div style="flex: 0 0 260px;">
+              <div style="position: relative;">
+                <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+                <img src="assets/ceo-moses-bagarirayose.png" alt="Mr Moses Bagarirayose, Founder and CEO of Vax 2040" style="position: relative; width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 20%; display: block; filter: saturate(.92);" />
+              </div>
+              <div style="height: 4px; background: #1A5CD8;"></div>
+            </div>
+            <div style="flex: 1 1 340px; min-width: 0; padding-top: 6px;">
+              <h2 style="margin: 0 0 6px; font-size: 34px; line-height: 1.12; letter-spacing: -1.1px; font-weight: 700;">Mr Moses Bagarirayose</h2>
+              <div style="font-size: 15px; color: #1A5CD8; font-weight: 600; margin-bottom: 30px;">Founder &amp; Chief Executive Officer</div>
+              <div style="display: flex; flex-direction: column; gap: 18px; font-size: 17px; line-height: 1.68; color: rgba(11,12,14,.75); max-width: 560px;">
+                <p style="margin: 0;">Moses Bagarirayose is the founder and Chief Executive Officer of Vax 2040. A pharmacist by training, he brings more than fifteen years of professional experience in the pharmaceutical and health sector to the Center's work.</p>
+                <p style="margin: 0;">He leads the Center's research agenda — the Manufacturing Growth Index, raw-material security surveillance, pooled procurement and next-generation therapeutics — and represents Vax 2040 in its engagement with regulators, manufacturers and philanthropic partners across the region.</p>
+              </div>
+              <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(11,12,14,.14); display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px;">
+                <div>
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.5); margin-bottom: 5px;">TRAINING</div>
+                  <div style="font-weight: 500;">Pharmacist</div>
+                </div>
+                <div>
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.5); margin-bottom: 5px;">EXPERIENCE</div>
+                  <div style="font-weight: 500;">15+ years</div>
+                </div>
+                <div>
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.5); margin-bottom: 5px;">BASED IN</div>
+                  <div style="font-weight: 500;">Kigali, Rwanda</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isResearch }}">
+  <main data-screen-label="Research">
+    <section style="position: relative; background: #0B0C0E; overflow: hidden;">
+      <img src="assets/research-hero.jpg" alt="Scientists at work in the Vax 2040 vaccine research and development laboratory" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(11,12,14,.90) 0%, rgba(20,23,30,.74) 52%, rgba(20,23,30,.86) 100%);"></div>
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 96px 40px 100px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.6); margin-bottom: 22px;">AREAS, METHODOLOGY &amp; INDICATORS</div>
+        <h1 style="margin: 0 0 24px; font-size: clamp(38px, 5.6vw, 68px); line-height: 1.02; letter-spacing: -.032em; font-weight: 700; color: #fff;">Research</h1>
+        <p style="margin: 0; max-width: 620px; font-size: 18px; line-height: 1.6; color: rgba(255,255,255,.75);">Focused research areas driving pharmaceutical development in Africa, and the framework we use to measure them.</p>
+      </div>
+    </section>
+
+    <section style="background: #fff; border-bottom: 1px solid rgba(11,12,14,.12);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 150px) minmax(min(100%, 320px), 1fr) minmax(0, 480px); gap: 44px; padding: 64px 0; border-bottom: 1px solid rgba(11,12,14,.12); align-items: start;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 14px;">01</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; color: rgba(11,12,14,.5); text-transform: uppercase;">Manufacturing · Infrastructure</div>
+          </div>
+          <div>
+            <h2 style="margin: 0 0 18px; font-size: 27px; line-height: 1.18; letter-spacing: -.8px; font-weight: 600; max-width: 100%;">Pharmaceutical Manufacturing Growth Index</h2>
+            <p style="margin: 0; max-width: 100%; font-size: 16px; line-height: 1.62; color: rgba(11,12,14,.72);">A comprehensive analysis of pharmaceutical manufacturing capacity, infrastructure and investment across Africa — plant by plant, product by product — so that progress toward the 2040 target can be stated as a number rather than an aspiration.</p>
+          </div>
+          <div style="position: relative;">
+            <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+            <img src="assets/production-floor.jpg" alt="Automated vial filling line on a pharmaceutical production floor" style="position: relative; width: 100%; height: clamp(220px, 30vw, 360px); object-fit: cover; display: block; background: #E8ECF3;" />
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 150px) minmax(min(100%, 320px), 1fr) minmax(0, 480px); gap: 44px; padding: 64px 0; border-bottom: 1px solid rgba(11,12,14,.12); align-items: start;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 14px;">02</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; color: rgba(11,12,14,.5); text-transform: uppercase;">Supply Chain · Raw Materials</div>
+          </div>
+          <div>
+            <h2 style="margin: 0 0 18px; font-size: 27px; line-height: 1.18; letter-spacing: -.8px; font-weight: 600; max-width: 100%;">Raw Materials Security Surveillance</h2>
+            <p style="margin: 0; max-width: 100%; font-size: 16px; line-height: 1.62; color: rgba(11,12,14,.72);">Monitoring and securing the supply of active ingredients, excipients and packaging on which local production depends. Manufacturing sovereignty is only real if the inputs are not a single shock away from stopping.</p>
+          </div>
+          <div style="position: relative;">
+            <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+            <img src="assets/raw-material-store.jpg" alt="Cold chain and ambient zones in a pharmaceutical raw material warehouse" style="position: relative; width: 100%; height: clamp(220px, 30vw, 360px); object-fit: cover; display: block; background: #E8ECF3;" />
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 150px) minmax(min(100%, 320px), 1fr) minmax(0, 480px); gap: 44px; padding: 64px 0; border-bottom: 1px solid rgba(11,12,14,.12); align-items: start;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 14px;">03</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; color: rgba(11,12,14,.5); text-transform: uppercase;">Procurement · Regulation</div>
+          </div>
+          <div>
+            <h2 style="margin: 0 0 18px; font-size: 27px; line-height: 1.18; letter-spacing: -.8px; font-weight: 600; max-width: 100%;">Pooled Procurement and Market Regulation</h2>
+            <p style="margin: 0; max-width: 100%; font-size: 16px; line-height: 1.62; color: rgba(11,12,14,.72);">Strengthening collective purchasing mechanisms and the regulatory frameworks around them, so that African-made medicines reach a market large enough and predictable enough to justify the factory that makes them.</p>
+          </div>
+          <div style="position: relative;">
+            <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+            <img src="assets/regulatory-review.jpg" alt="A researcher outside a biomedical research institute holding regulatory data" style="position: relative; width: 100%; height: clamp(220px, 30vw, 360px); object-fit: cover; display: block; background: #E8ECF3;" />
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 150px) minmax(min(100%, 320px), 1fr) minmax(0, 480px); gap: 44px; padding: 64px 0; border-bottom: 1px solid rgba(11,12,14,.12); align-items: start;">
+          <div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 14px;">04</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .08em; color: rgba(11,12,14,.5); text-transform: uppercase;">Therapeutics · Diagnostics</div>
+          </div>
+          <div>
+            <h2 style="margin: 0 0 18px; font-size: 27px; line-height: 1.18; letter-spacing: -.8px; font-weight: 600; max-width: 100%;">Accelerate the Next Generation of Therapy and Diagnostics</h2>
+            <p style="margin: 0; max-width: 100%; font-size: 16px; line-height: 1.62; color: rgba(11,12,14,.72);">Tracking and advocating for African participation in advanced therapeutics, precision medicine and diagnostic capability — the technologies that will define the next two decades of the field, not the last two.</p>
+          </div>
+          <div style="position: relative;">
+            <div style="position: absolute; left: -20px; top: -20px; width: 100%; height: 100%; background: #1A5CD8;"></div>
+            <img src="assets/lab-team.jpg" alt="Scientists running diagnostic assays in a modern laboratory" style="position: relative; width: 100%; height: clamp(220px, 30vw, 360px); object-fit: cover; display: block; background: #E8ECF3;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #F5F6F8;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 56px 64px; align-items: start;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; padding-top: 10px;">OUR PRIME OBJECTIVE</div>
+          <div>
+            <h2 style="margin: 0 0 22px; font-size: 40px; line-height: 1.08; letter-spacing: -1.4px; font-weight: 700; max-width: 620px;">Vaccine &amp; Pharmaceutical Manufacturing Growth Index</h2>
+            <p style="margin: 0 0 44px; max-width: 620px; font-size: 17.5px; line-height: 1.62; color: rgba(11,12,14,.72);">An independent, data-driven framework to measure, track and accelerate pharmaceutical manufacturing progress across Africa.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+              <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 1px; background: rgba(11,12,14,.14);">
+                <div style="background: #F5F6F8; padding: 22px 0 22px 0;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: #1A5CD8; margin-bottom: 8px;">INDICATOR 01</div>
+                  <div style="font-size: 17px; font-weight: 500;">Measure growth in production volumes</div>
+                </div>
+                <div style="background: #F5F6F8; padding: 22px 0;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: #1A5CD8; margin-bottom: 8px;">INDICATOR 02</div>
+                  <div style="font-size: 17px; font-weight: 500;">Assess regulatory capability and factory standards</div>
+                </div>
+                <div style="background: #F5F6F8; padding: 22px 0;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: #1A5CD8; margin-bottom: 8px;">INDICATOR 03</div>
+                  <div style="font-size: 17px; font-weight: 500;">Identify supply chain and funding bottlenecks</div>
+                </div>
+              </div>
+              <div style="flex: 1 1 320px; min-width: 0; background: #fff; border: 1px solid rgba(11,12,14,.14); padding: 36px 32px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.55); margin-bottom: 28px;">LOCAL PRODUCTION, SHARE OF DOSES</div>
+                <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px 32px; margin-bottom: 14px;">
+                  <div>
+                    <div style="font-size: clamp(30px, 3.2vw, 40px); font-weight: 700; letter-spacing: -.04em; line-height: 1; color: #0B0C0E;">~1%</div>
+                    <div style="margin-top: 6px; font-size: 13px; color: rgba(11,12,14,.6);">today</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-size: clamp(30px, 3.2vw, 40px); font-weight: 700; letter-spacing: -.04em; line-height: 1; color: #1A5CD8;">60%</div>
+                    <div style="margin-top: 6px; font-size: 13px; color: rgba(11,12,14,.6);">target by 2040</div>
+                  </div>
+                </div>
+                <div style="position: relative; height: 8px; background: rgba(11,12,14,.1); margin-top: 26px;">
+                  <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 2%; background: #0B0C0E;"></div>
+                  <div style="position: absolute; left: 60%; top: -5px; bottom: -5px; width: 2px; background: #1A5CD8;"></div>
+                </div>
+                <div style="margin-top: 12px; display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: .06em; color: rgba(11,12,14,.5);">
+                  <span>CURRENT</span>
+                  <span>AU TARGET</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isImpact }}">
+  <main data-screen-label="Impact">
+    <section style="position: relative; background: #0B0C0E; overflow: hidden;">
+      <img src="assets/impact-hero.jpg" alt="A nurse vaccinating a child at a rural outreach clinic as families wait in line" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(160deg, rgba(11,12,14,.90) 0%, rgba(20,23,30,.74) 52%, rgba(20,23,30,.86) 100%);"></div>
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 96px 40px 100px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.6); margin-bottom: 22px;">EVIDENCE IN USE</div>
+        <h1 style="margin: 0 0 24px; font-size: clamp(38px, 5.6vw, 68px); line-height: 1.02; letter-spacing: -.032em; font-weight: 700; color: #fff;">Impact</h1>
+        <p style="margin: 0; max-width: 620px; font-size: 18px; line-height: 1.6; color: rgba(255,255,255,.75);">Research only matters when it changes a decision. Here is how our work is meant to be used — and who we build it for.</p>
+      </div>
+    </section>
+
+    <section style="background: #fff; border-bottom: 1px solid rgba(11,12,14,.12);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px;">
+        <div style="display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 56px 64px; align-items: start;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; padding-top: 10px;">HOW THE WORK LANDS</div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(11,12,14,.14);">
+            <sc-for list="{{ impacts }}" as="it" hint-placeholder-count="4">
+              <div style="background: #fff; padding: 36px 38px 40px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .1em; color: #1A5CD8; margin-bottom: 20px;">{{ it.label }}</div>
+                <h3 style="margin: 0 0 12px; font-size: 22px; line-height: 1.2; letter-spacing: -.6px; font-weight: 600;">{{ it.title }}</h3>
+                <p style="margin: 0; font-size: 15px; line-height: 1.6; color: rgba(11,12,14,.68);">{{ it.body }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: #1A5CD8;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 104px 40px;">
+        <blockquote style="margin: 0; max-width: 900px;">
+          <div style="font-size: 34px; line-height: 1.34; letter-spacing: -.9px; font-weight: 500; font-style: italic; color: #fff;">“The state of vaccine science now is far more powerful and sophisticated than it has ever been. And I am confident that many of these challenges that we face will be solved by vaccine development.”</div>
+          <div style="margin-top: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: .12em; color: rgba(255,255,255,.7);">— MARK FEINBERG</div>
+        </blockquote>
+      </div>
+    </section>
+
+    <section style="background: #F5F6F8;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 56px; align-items: center;">
+        <div>
+          <h2 style="margin: 0 0 18px; font-size: 40px; line-height: 1.1; letter-spacing: -1.3px; font-weight: 700;">Working with the press</h2>
+          <p style="margin: 0; max-width: 580px; font-size: 17.5px; line-height: 1.62; color: rgba(11,12,14,.72);">Our data, methodology and index findings are available to journalists on request, and our founder is available for comment on African pharmaceutical manufacturing, vaccine supply and regulatory capacity.</p>
+        </div>
+        <div onClick="{{ goContact }}" style="padding: 16px 26px; background: #1A5CD8; color: #fff; font-weight: 600; font-size: 15px; text-align: center; cursor: pointer;" style-hover="background: #0B0C0E;">Media &amp; press enquiries</div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}">
+  <main data-screen-label="Contact">
+    <section style="position: relative; background: #0B0C0E; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(160deg, #0B0C0E 0%, #14171E 100%);"></div>
+      <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 96px 40px 100px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.6); margin-bottom: 22px;">KIGALI, RWANDA</div>
+        <h1 style="margin: 0; font-size: clamp(38px, 5.6vw, 68px); line-height: 1.02; letter-spacing: -.032em; font-weight: 700; color: #fff;">Contact</h1>
+      </div>
+    </section>
+
+    <section style="background: #fff;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start;">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .12em; color: #1A5CD8; margin-bottom: 26px;">VAX 2040 (VAX PHARMA 2040)</div>
+          <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(11,12,14,.14);">
+            <div style="background: #fff; padding: 22px 0;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.55); margin-bottom: 8px;">EMAIL</div>
+              <a href="mailto:vax2040@gmail.com" style="font-size: 20px; font-weight: 600; letter-spacing: -.4px;">vax2040@gmail.com</a>
+            </div>
+            <div style="background: #fff; padding: 22px 0;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.55); margin-bottom: 8px;">PHONE &amp; WHATSAPP</div>
+              <a href="tel:+250788853335" style="font-size: 20px; font-weight: 600; letter-spacing: -.4px;">+250 788 853 335</a>
+            </div>
+            <div style="background: #fff; padding: 22px 0;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.55); margin-bottom: 8px;">ADDRESS</div>
+              <div style="font-size: 20px; font-weight: 600; letter-spacing: -.4px;">Kigali, Rwanda</div>
+            </div>
+            <div style="background: #fff; padding: 22px 0;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.55); margin-bottom: 8px;">OFFICE HOURS</div>
+              <div style="font-size: 20px; font-weight: 600; letter-spacing: -.4px;">Monday – Saturday, 7:00 AM – 5:00 PM</div>
+            </div>
+          </div>
+        </div>
+        <div style="background: #F5F6F8; padding: 44px 40px 48px;">
+          <h2 style="margin: 0 0 8px; font-size: 28px; line-height: 1.15; letter-spacing: -.9px; font-weight: 700;">Send us a message</h2>
+          <p style="margin: 0 0 32px; font-size: 15px; line-height: 1.55; color: rgba(11,12,14,.65);">Research collaboration, data requests and media enquiries.</p>
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div>
+              <label for="cname" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.6); margin-bottom: 8px;">NAME</label>
+              <input id="cname" type="text" style="width: 100%; padding: 13px 14px; border: 1px solid rgba(11,12,14,.2); background: #fff; font-size: 15px; color: #0B0C0E; outline: none;" style-focus="border-color: #1A5CD8;" />
+            </div>
+            <div>
+              <label for="cemail" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.6); margin-bottom: 8px;">EMAIL</label>
+              <input id="cemail" type="email" style="width: 100%; padding: 13px 14px; border: 1px solid rgba(11,12,14,.2); background: #fff; font-size: 15px; color: #0B0C0E; outline: none;" style-focus="border-color: #1A5CD8;" />
+            </div>
+            <div>
+              <label for="cmsg" style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .1em; color: rgba(11,12,14,.6); margin-bottom: 8px;">MESSAGE</label>
+              <textarea id="cmsg" rows="5" style="width: 100%; padding: 13px 14px; border: 1px solid rgba(11,12,14,.2); background: #fff; font-size: 15px; color: #0B0C0E; outline: none; resize: vertical;" style-focus="border-color: #1A5CD8;"></textarea>
+            </div>
+            <button type="button" onClick="{{ submit }}" style="margin-top: 6px; padding: 15px 26px; background: #1A5CD8; color: #fff; border: none; font-weight: 600; font-size: 15px; cursor: pointer;" style-hover="background: #0B0C0E;">{{ submitLabel }}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <footer style="background: #0B0C0E;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 72px 40px 32px;">
+      <div style="display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)) minmax(0, 1.3fr); gap: 40px 48px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+            <img src="assets/logo.jpeg" alt="Vax 2040 logo" style="width: 38px; height: 38px; object-fit: cover; display: block;" />
+            <div style="font-weight: 700; font-size: 15px; color: #fff; letter-spacing: -.2px;">VAX 2040</div>
+          </div>
+          <p style="margin: 0; max-width: 280px; font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,.62);">Pioneering pharmaceutical and vaccine research for global health security and innovation.</p>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: rgba(255,255,255,.45); margin-bottom: 18px;">SITE</div>
+          <div style="display: flex; flex-direction: column; gap: 11px; font-size: 14.5px;">
+            <div onClick="{{ goAbout }}" style="color: rgba(255,255,255,.82); cursor: pointer;" style-hover="color: #8FB6FF;">About us</div>
+            <div onClick="{{ goResearch }}" style="color: rgba(255,255,255,.82); cursor: pointer;" style-hover="color: #8FB6FF;">Research</div>
+            <div onClick="{{ goImpact }}" style="color: rgba(255,255,255,.82); cursor: pointer;" style-hover="color: #8FB6FF;">Impact</div>
+            <div onClick="{{ goContact }}" style="color: rgba(255,255,255,.82); cursor: pointer;" style-hover="color: #8FB6FF;">Contact</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: rgba(255,255,255,.45); margin-bottom: 18px;">CONTACT</div>
+          <div style="display: flex; flex-direction: column; gap: 11px; font-size: 14.5px; color: rgba(255,255,255,.82);">
+            <a href="mailto:vax2040@gmail.com" style="color: rgba(255,255,255,.82);" style-hover="color: #8FB6FF;">vax2040@gmail.com</a>
+            <a href="tel:+250788853335" style="color: rgba(255,255,255,.82);" style-hover="color: #8FB6FF;">+250 788 853 335</a>
+            <div>Kigali, Rwanda</div>
+          </div>
+        </div>
+        <sc-if value="{{ showSubscribe }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: .12em; color: rgba(255,255,255,.45); margin-bottom: 18px;">SUBSCRIBE</div>
+          <p style="margin: 0 0 16px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,.62);">Occasional updates when new research is published.</p>
+          <div style="display: flex; gap: 8px;">
+            <label for="sub" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email address</label>
+            <input id="sub" type="email" placeholder="Your email address" style="flex: 1; min-width: 0; padding: 12px 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: 14px; outline: none;" style-focus="border-color: #8FB6FF;" />
+            <button type="button" style="padding: 12px 18px; background: #8FB6FF; color: #0A1730; border: none; font-weight: 600; font-size: 14px; cursor: pointer;" style-hover="background: #fff;">Join</button>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+      <div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: 13px; color: rgba(255,255,255,.5);">
+        <div>© 2026 Vax 2040 Research Center. All rights reserved.</div>
+        <div style="display: flex; gap: 24px;">
+          <div style="cursor: pointer;" style-hover="color: rgba(255,255,255,.85);">Privacy policy</div>
+          <div style="cursor: pointer;" style-hover="color: rgba(255,255,255,.85);">Terms of use</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showTags&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showSignature&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showSubscribe&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'home', sent: false };
+
+  go(page) {
+    this.setState({ page });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    return {
+      isHome: p === 'home',
+      isAbout: p === 'about',
+      isResearch: p === 'research',
+      isImpact: p === 'impact',
+      isContact: p === 'contact',
+      goHome: () => this.go('home'),
+      goAbout: () => this.go('about'),
+      goResearch: () => this.go('research'),
+      goImpact: () => this.go('impact'),
+      goContact: () => this.go('contact'),
+      showTags: this.props.showTags ?? true,
+      showSignature: this.props.showSignature ?? true,
+      showSubscribe: this.props.showSubscribe ?? true,
+      submit: () => this.setState({ sent: true }),
+      submitLabel: this.state.sent ? 'Message sent ✓' : 'Send message',
+      areas: [
+        {
+          num: '01',
+          title: 'Pharmaceutical Manufacturing Growth Index',
+          short: 'Analysis of manufacturing capacity, infrastructure and investment across the continent.',
+          long: 'A comprehensive analysis of pharmaceutical manufacturing capacity, infrastructure and investment across Africa — plant by plant, product by product — so that progress toward the 2040 target can be stated as a number rather than an aspiration.',
+          tags: 'Manufacturing · Infrastructure',
+          img: 'assets/production-floor.jpg',
+          alt: 'Automated vial filling line on a pharmaceutical production floor'
+        },
+        {
+          num: '02',
+          title: 'Raw Materials Security Surveillance',
+          short: 'Monitoring the security of pharmaceutical raw material supply chains.',
+          long: 'Monitoring and securing the supply of active ingredients, excipients and packaging on which local production depends. Manufacturing sovereignty is only real if the inputs are not a single shock away from stopping.',
+          tags: 'Supply Chain · Raw Materials',
+          img: 'assets/raw-material-store.jpg',
+          alt: 'Cold chain and ambient zones in a pharmaceutical raw material warehouse'
+        },
+        {
+          num: '03',
+          title: 'Pooled Procurement and Market Regulation',
+          short: 'Strengthening collective purchasing mechanisms and regulatory frameworks.',
+          long: 'Strengthening collective purchasing mechanisms and the regulatory frameworks around them, so that African-made medicines reach a market large enough and predictable enough to justify the factory that makes them.',
+          tags: 'Procurement · Regulation',
+          img: 'assets/regulatory-review.jpg',
+          alt: 'A researcher outside a biomedical research institute holding regulatory data'
+        },
+        {
+          num: '04',
+          title: 'Accelerate the Next Generation of Therapy and Diagnostics',
+          short: 'Driving innovation in advanced therapeutics, precision medicine and diagnostics.',
+          long: 'Tracking and advocating for African participation in advanced therapeutics, precision medicine and diagnostic capability — the technologies that will define the next two decades of the field, not the last two.',
+          tags: 'Therapeutics · Diagnostics',
+          img: 'assets/lab-team.jpg',
+          alt: 'Scientists running diagnostic assays in a modern laboratory'
+        }
+      ],
+      values: [
+        { num: '01', title: 'Change and continuous improvement', body: 'We revise our own findings as fast as the evidence moves.' },
+        { num: '02', title: 'Pan-African solidarity', body: 'Capacity built anywhere on the continent is capacity for the whole of it.' },
+        { num: '03', title: 'Evidence-based advocacy', body: 'We argue from data we are willing to publish and defend.' },
+        { num: '04', title: 'Sovereignty and self-reliance', body: 'Health security that depends on goodwill is not security.' }
+      ],
+      impacts: [
+        { label: 'FOR GOVERNMENTS', title: 'A baseline to plan against', body: 'Independent figures on where national manufacturing capacity actually stands, and which gaps policy can close fastest.' },
+        { label: 'FOR MANUFACTURERS', title: 'Where the bottlenecks are', body: 'Supply chain and regulatory friction mapped, so investment decisions rest on evidence rather than anecdote.' },
+        { label: 'FOR FUNDERS', title: 'Progress that can be audited', body: 'A consistent index that shows whether capital committed to African production is translating into doses.' },
+        { label: 'FOR THE PRESS', title: 'Numbers you can cite', body: 'Methodology, sources and data available on request, with our founder available for comment and background.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
